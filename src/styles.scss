@@ -1,1 +1,160 @@
-/* You can add global styles to this file, and also import other style files */
+/* Variables globales de diseño */
+:root {
+  /* Paleta de color */
+  --color-primary: #003087;
+  --color-primary-light: #0044cc;
+  --color-accent: #c8a84b;
+  --color-success: #2e7d32;
+  --color-success-bg: #f0faf0;
+  --color-danger: #c62828;
+  --color-danger-bg: #fff5f5;
+  --color-bg: #f0f4f8;
+  --color-card: #ffffff;
+  --color-text: #1a1a2e;
+  --color-text-muted: #6b7280;
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-overlay: rgba(0, 0, 0, 0.45);
+
+  /* Tipografía base */
+  --font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* Accesibilidad global */
+/* Anillo de foco visible para navegación por teclado */
+:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Contenido exclusivo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Botines transversales */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    opacity 0.15s,
+    transform 0.1s;
+  font-family: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(0, 48, 135, 0.35);
+  }
+
+  /* Variante primaria */
+  &--primary {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+
+    &:hover:not(:disabled) {
+      background: var(--color-primary-light);
+      border-color: var(--color-primary-light);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  /* Variante secundaria */
+  &--secondary {
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-border);
+
+    &:hover {
+      background: var(--color-bg);
+      border-color: var(--color-border-hover);
+    }
+  }
+
+  /* Variante de peligro (cancelar) */
+  &--danger {
+    background: var(--color-danger);
+    color: white;
+    border-color: var(--color-danger);
+
+    &:hover:not(:disabled) {
+      background: #b71c1c;
+      border-color: #b71c1c;
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  /* Ancho completo */
+  &--full {
+    width: 100%;
+  }
+}

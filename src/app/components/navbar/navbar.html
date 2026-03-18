@@ -1,0 +1,23 @@
+<header class="navbar">
+  <div class="navbar__brand">
+    <span class="navbar__logo">BTG</span>
+    <span class="navbar__title">Fondos de Inversión</span>
+  </div>
+
+  <nav class="navbar__nav" aria-label="Navegación principal">
+    <a routerLink="/fondos" routerLinkActive="active" class="navbar__link">
+      Fondos
+    </a>
+    <a routerLink="/historial" routerLinkActive="active" class="navbar__link">
+      Historial
+      @if (subscribedCount() > 0) {
+        <span class="navbar__badge">{{ subscribedCount() }}</span>
+      }
+    </a>
+  </nav>
+
+  <div class="navbar__balance">
+    <span class="navbar__balance-label">Saldo disponible</span>
+    <span class="navbar__balance-amount">{{ balance() | cop }}</span>
+  </div>
+</header>

@@ -1,0 +1,47 @@
+<article class="fund-card" [class.fund-card--subscribed]="isSubscribed()">
+  <div class="fund-card__header">
+    <span
+      class="fund-card__category"
+      [class.fund-card__category--fic]="fund().category === 'FIC'"
+    >
+      {{ fund().category }}
+    </span>
+
+    @if (isSubscribed()) {
+      <span class="fund-card__status">
+        <span class="fund-card__status-dot"></span>
+        Suscrito
+      </span>
+    }
+  </div>
+
+  <h3 class="fund-card__name">{{ fund().name }}</h3>
+
+  <div class="fund-card__amount">
+    <span class="fund-card__amount-label">Monto mínimo</span>
+    <span class="fund-card__amount-value">{{ fund().minimumAmount | cop }}</span>
+  </div>
+
+  @if (!isSubscribed() && !canAfford()) {
+    <p class="fund-card__warning" role="alert">
+      Saldo insuficiente para suscribirse a este fondo
+    </p>
+  }
+
+  <div class="fund-card__actions">
+    @if (isSubscribed()) {
+      <button class="btn btn--danger btn--full" (click)="onCancel()">
+        Cancelar suscripción
+      </button>
+    } @else {
+      <button
+        class="btn btn--primary btn--full"
+        (click)="onSubscribe()"
+        [disabled]="!canAfford()"
+        [attr.title]="!canAfford() ? 'Saldo insuficiente' : null"
+      >
+        Suscribirse
+      </button>
+    }
+  </div>
+</article>

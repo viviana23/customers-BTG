@@ -1,0 +1,79 @@
+<div class="home">
+
+  <!-- Saldo del usuario -->
+  <section class="home__balance-section" aria-label="Saldo disponible">
+    <div class="balance-card">
+      <div class="balance-card__label">Saldo disponible</div>
+      <div class="balance-card__amount">{{ balance() | cop }}</div>
+      <div class="balance-card__info">
+        Usuario BTG Pactual &mdash; Saldo inicial {{ initialBalance | cop }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtros de categoría -->
+  <section class="home__filters" aria-label="Filtrar fondos">
+    <button
+      class="filter-btn"
+      [class.filter-btn--active]="activeFilter() === 'all'"
+      (click)="setFilter('all')"
+    >
+      Todos los fondos
+    </button>
+    <button
+      class="filter-btn"
+      [class.filter-btn--active]="activeFilter() === 'FPV'"
+      (click)="setFilter('FPV')"
+    >
+      FPV
+    </button>
+    <button
+      class="filter-btn"
+      [class.filter-btn--active]="activeFilter() === 'FIC'"
+      (click)="setFilter('FIC')"
+    >
+      FIC
+    </button>
+  </section>
+
+  <!-- Estado de carga -->
+  @if (loading()) {
+    <div class="home__loading" role="status" aria-label="Cargando fondos">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Cargando fondos disponibles&hellip;</p>
+    </div>
+  }
+
+  <!-- Estado de error -->
+  @if (error()) {
+    <div class="home__error" role="alert">
+      <p>{{ error() }}</p>
+      <button class="btn btn--primary" (click)="loadFunds()">Reintentar</button>
+    </div>
+  }
+
+  <!-- Grilla de fondos -->
+  @if (!loading() && !error()) {
+    <section class="home__grid" aria-label="Lista de fondos">
+      @if (filteredFunds().length === 0) {
+        <p class="home__empty">No hay fondos disponibles para esta categoría.</p>
+      }
+      @for (fund of filteredFunds(); track fund.id) {
+        <app-fund-card
+          [fund]="fund"
+          (subscribe)="openSubscribeModal($event)"
+          (cancel)="handleCancelSubscription($event)"
+        />
+      }
+    </section>
+  }
+
+  <!-- Modal de suscripción -->
+  @if (selectedFund()) {
+    <app-subscription-modal
+      [fund]="selectedFund()!"
+      (close)="handleModalClose($event)"
+    />
+  }
+
+</div>

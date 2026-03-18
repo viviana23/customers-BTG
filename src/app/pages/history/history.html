@@ -1,0 +1,74 @@
+<div class="history">
+  <div class="history__header">
+    <h1 class="history__title">Historial de transacciones</h1>
+    <p class="history__subtitle">Registro completo de sus suscripciones y cancelaciones</p>
+  </div>
+
+  @if (transactions().length === 0) {
+    <div class="history__empty" role="status">
+      <div class="history__empty-icon" aria-hidden="true">📋</div>
+      <p class="history__empty-text">No hay transacciones registradas</p>
+      <p class="history__empty-sub">Sus suscripciones y cancelaciones de fondos aparecerán aquí.</p>
+    </div>
+  } @else {
+    <div class="history__summary">
+      <span class="history__count"
+        >{{ transactions().length }} transacción{{ transactions().length !== 1 ? 'es' : '' }}</span
+      >
+    </div>
+
+    <div class="history__table-wrapper">
+      <table class="history__table" aria-label="Historial de transacciones">
+        <thead>
+          <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Fondo</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Notificación</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tx of transactions(); track tx.id) {
+            <tr>
+              <td class="history__date">
+                {{ tx.date | date: 'dd/MM/yyyy' }}
+                <span class="history__time">{{ tx.date | date: 'HH:mm' }}</span>
+              </td>
+              <td class="history__fund">{{ tx.fundName }}</td>
+              <td>
+                <span
+                  class="history__badge"
+                  [class.history__badge--subscription]="tx.type === 'SUBSCRIPTION'"
+                  [class.history__badge--cancellation]="tx.type === 'CANCELLATION'"
+                >
+                  {{ tx.type === 'SUBSCRIPTION' ? 'Suscripción' : 'Cancelación' }}
+                </span>
+              </td>
+              <td
+                class="history__amount"
+                [class.history__amount--positive]="tx.type === 'CANCELLATION'"
+                [class.history__amount--negative]="tx.type === 'SUBSCRIPTION'"
+              >
+                {{ tx.type === 'CANCELLATION' ? '+' : '-' }}{{ tx.amount | cop }}
+              </td>
+              <td class="history__notification">
+                @if (tx.notificationMethod) {
+                  <span class="history__notif-badge">
+                    @if (tx.notificationMethod === 'email') {
+                      ✉️ Email
+                    } @else {
+                      📱 SMS
+                    }
+                  </span>
+                } @else {
+                  <span class="history__notif-none" aria-label="No aplica">—</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
