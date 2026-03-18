@@ -1,6 +1,5 @@
 /**
- * Formatea un número como moneda colombiana (COP).
- * Función utilitaria.
+ * Formatea un número como moneda colombiana.
  * Ej: 500000 => COP 500.000
  */
 export function formatCOP(amount: number): string {

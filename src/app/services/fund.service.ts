@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Fund } from '../models/fund.model';
 
 /**
- * Responsabilidad única: obtener los fondos disponibles desde la API.
+ * Obtener los fondos disponibles desde la API.
  * Los errores HTTP son manejados de forma centralizada por httpErrorInterceptor.
  */
 @Injectable({ providedIn: 'root' })

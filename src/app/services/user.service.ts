@@ -15,7 +15,7 @@ export class UserService {
   /** Datos del usuario (disponibles tras la inicialización de la app) */
   readonly user = this._user.asReadonly();
 
-  /** Carga el usuario desde el mock de API. Llamado por provideAppInitializer. */
+  /** Carga el usuario desde el mock de API llamado por provideAppInitializer. */
   loadUser() {
     return this.http.get<User>('/mock-user.json').pipe(tap((user) => this._user.set(user)));
   }

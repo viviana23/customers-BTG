@@ -1,9 +1,9 @@
-/**
- * Configuración global de la aplicación.
- * Define los providers raíz: router, HttpClient con interceptor de errores,
- * y el inicializador que carga los datos del usuario antes del primer render.
- */
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideAppInitializer, inject } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideAppInitializer,
+  inject,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
@@ -18,5 +18,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([httpErrorInterceptor])),
     // Carga los datos del usuario antes de que arranque la app
     provideAppInitializer(() => inject(UserService).loadUser()),
-  ]
+  ],
 };

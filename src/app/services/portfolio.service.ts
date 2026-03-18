@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 
 /**
  * Gestionar el estado del portafolio del usuario.
- * Controla el saldo, los fondos suscritos y las reglas de negocio.
+ * Controla el saldo, los fondos suscritos.
  * Delega el registro de transacciones a TransactionService.
  * El saldo inicial proviene de UserService (cargado desde el mock de API).
  */
@@ -41,7 +41,7 @@ export class PortfolioService {
 
   /**
    * Suscribe al usuario a un fondo.
-   * Valida reglas de negocio y delega el registro histórico a TransactionService.
+   * Delega el registro histórico a TransactionService.
    */
   subscribe(fund: Fund, notificationMethod: NotificationMethod): ActionResult {
     if (this._subscribedFundIds().has(fund.id)) {

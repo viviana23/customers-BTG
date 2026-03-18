@@ -6,14 +6,14 @@ Aplicación web interactiva para la gestión de fondos de inversión FPV y FIC d
 
 ## Funcionalidades
 
-| Funcionalidad | Descripción |
-|---|---|
+| Funcionalidad     | Descripción                                          |
+| ----------------- | ---------------------------------------------------- |
 | Visualizar fondos | Lista de fondos con nombre, categoría y monto mínimo |
-| Suscripción | Suscribirse a un fondo si el saldo es suficiente |
-| Cancelación | Cancelar participación y ver saldo actualizado |
-| Historial | Registro completo de suscripciones y cancelaciones |
-| Notificaciones | Selección de método (email o SMS) al suscribirse |
-| Validaciones | Mensajes de error si el saldo es insuficiente |
+| Suscripción       | Suscribirse a un fondo si el saldo es suficiente     |
+| Cancelación       | Cancelar participación y ver saldo actualizado       |
+| Historial         | Registro completo de suscripciones y cancelaciones   |
+| Notificaciones    | Selección de método (email o SMS) al suscribirse     |
+| Validaciones      | Mensajes de error si el saldo es insuficiente        |
 
 ---
 
@@ -42,7 +42,7 @@ Aplicación web interactiva para la gestión de fondos de inversión FPV y FIC d
 
 ```bash
 # 1. Clonar el repositorio
-git clone <url-del-repositorio>
+git clone <https://github.com/viviana23/customers-BTG.git>
 cd fpv-app
 
 # 2. Instalar dependencias
@@ -115,13 +115,13 @@ src/
 
 El servicio `FundService` simula una API REST con los siguientes fondos:
 
-| ID | Nombre | Monto mínimo | Categoría |
-|---|---|---|---|
-| 1 | FPV_BTG_PACTUAL_RECAUDADORA | COP $75.000 | FPV |
-| 2 | FPV_BTG_PACTUAL_ECOPETROL | COP $125.000 | FPV |
-| 3 | DEUDAPRIVADA | COP $50.000 | FIC |
-| 4 | FDO-ACCIONES | COP $250.000 | FIC |
-| 5 | FPV_BTG_PACTUAL_DINAMICA | COP $100.000 | FPV |
+| ID  | Nombre                      | Monto mínimo | Categoría |
+| --- | --------------------------- | ------------ | --------- |
+| 1   | FPV_BTG_PACTUAL_RECAUDADORA | COP $75.000  | FPV       |
+| 2   | FPV_BTG_PACTUAL_ECOPETROL   | COP $125.000 | FPV       |
+| 3   | DEUDAPRIVADA                | COP $50.000  | FIC       |
+| 4   | FDO-ACCIONES                | COP $250.000 | FIC       |
+| 5   | FPV_BTG_PACTUAL_DINAMICA    | COP $100.000 | FPV       |
 
 El usuario inicia con un **saldo de COP $500.000**.
 
@@ -159,4 +159,3 @@ PortfolioStateService    → Angular Signals
 ```
 
 La **validación de negocio** (saldo suficiente, no duplicados) residiría en el backend. El frontend podría mantener una pre-validación optimista para mejorar la UX, pero la fuente de verdad siempre sería la respuesta del API.
-# customers-BTG
